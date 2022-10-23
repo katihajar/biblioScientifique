@@ -16,7 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 
-@Document(collection = "User")
+@Document
 @Data
 public class User implements UserDetails {
     @Id

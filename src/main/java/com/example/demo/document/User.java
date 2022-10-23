@@ -1,7 +1,10 @@
 package com.example.demo.document;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -9,10 +12,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+
 import java.util.Collection;
 import java.util.Collections;
 
-@Document
+@Document(collection = "User")
 @Data
 public class User implements UserDetails {
     @Id
@@ -26,10 +30,15 @@ public class User implements UserDetails {
     @JsonIgnore
     @NonNull
     private String password;
+
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.EMPTY_LIST;
     }
+
+    private Universite universite;
 
     @Override
     public String getPassword() {

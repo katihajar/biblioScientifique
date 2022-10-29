@@ -58,7 +58,7 @@ public class AuthREST {
         return ResponseEntity.ok(new TokenDTO(user.getId(), accessToken, refreshTokenString));
     }
 
-    @PostMapping("signup")
+    @PostMapping("/signup")
     @Transactional
     public ResponseEntity<?> signup(@Valid @RequestBody SignupDTO dto) {
         User user = new User(dto.getUsername(), dto.getEmail(), passwordEncoder.encode(dto.getPassword()));

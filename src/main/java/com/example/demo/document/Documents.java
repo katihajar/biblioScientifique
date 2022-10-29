@@ -16,7 +16,9 @@ public class Documents{
     private boolean statut;
     private Date datePubl;
     private Thematique thematique;
-
+    private String fileType;
+    private String fileSize;
+    private byte[] file;
 
     public Long getId() {
         return id;
@@ -66,5 +68,27 @@ public class Documents{
         this.thematique = thematique;
     }
 
+    public String getFileType() {
+        return fileType;
+    }
 
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
+    }
+
+    public String getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(String fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public byte[] getFile() {
+        return file;
+    }
+
+    public void setFile(byte[] file) {
+        this.file = file;
+    }
 }

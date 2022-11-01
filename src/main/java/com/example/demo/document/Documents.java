@@ -1,30 +1,35 @@
 package com.example.demo.document;
 
 
+import com.mongodb.DBObject;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.io.InputStream;
 import java.util.Date;
 
 @Document
 @Data
 public class Documents{
+
     @Id
-    Long id;
+    String id;
     private String titre;
     private double nmbrTelechargement;
     private boolean statut;
     private Date datePubl;
     private Thematique thematique;
     private String fileType;
-    private String fileSize;
+    private long fileSize;
     private byte[] file;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -76,11 +81,11 @@ public class Documents{
         this.fileType = fileType;
     }
 
-    public String getFileSize() {
+    public long getFileSize() {
         return fileSize;
     }
 
-    public void setFileSize(String fileSize) {
+    public void setFileSize(long fileSize) {
         this.fileSize = fileSize;
     }
 

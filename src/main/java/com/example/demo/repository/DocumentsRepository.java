@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DocumentsRepository extends MongoRepository<Documents, Long> {
     Documents findByTitre(String titre);
-    int deleteDocumentsById(long id);
+    Documents findDocumentById(String id);
+    int deleteDocumentsById(String id);
 }

@@ -35,7 +35,7 @@ public class DocumentsREST {
     }
 
     @DeleteMapping("/id/{id}")
-    public int deleteDocumentById(@PathVariable Long id) {
+    public int deleteDocumentById(@PathVariable String id) {
         return documentsService.deleteDocumentById(id);
     }
     @PostMapping("/upload")
@@ -43,13 +43,8 @@ public class DocumentsREST {
         return new ResponseEntity<>(documentsService.addFile(file), HttpStatus.OK);
     }
 
-    @GetMapping("/download/")
-    public ResponseEntity<ByteArrayResource> download(@RequestBody Documents doc ) throws IOException {
-        Documents loadFile = documentsService.downloadFile(doc);
-
-        return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(loadFile.getFileType() ))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + loadFile.getTitre() + "\"")
-                .body(new ByteArrayResource(loadFile.getFile()));
+    @PostMapping("/getFile/{id}")
+    public Documents getFile(@PathVariable String id) {
+        return documentsService.getFile(id);
     }
 }

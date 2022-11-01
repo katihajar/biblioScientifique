@@ -9,12 +9,14 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.data.mongodb.gridfs.GridFsOperations;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.print.Doc;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -37,33 +39,26 @@ public class DocumentsService {
     }
 
 
-    public String addFile(MultipartFile upload) throws IOException {
+    public Documents addFile(MultipartFile upload) throws IOException {
 
         DBObject metadata = new BasicDBObject();
         metadata.put("fileSize", upload.getSize());
 
-        Object fileID = template.store(upload.getInputStream(), upload.getOriginalFilename(), upload.getContentType(), metadata);
+        //Object fileID = template.store(upload.getInputStream(), upload.getOriginalFilename(), upload.getContentType(), metadata);
+        Documents documents = new Documents();
+        documents.setFile(upload.getBytes());
+        documents.setTitre(upload.getOriginalFilename());
+        documents.setFileSize(upload.getSize());
+        documents.setFileType(upload.getContentType());
 
-        return fileID.toString();
+
+        return documentsRepository.save(documents);
     }
 
 
-    public Documents downloadFile(Documents entity) throws IOException {
+    public Documents getFile(String id){
 
-        GridFSFile gridFSFile = template.findOne( new Query(Criteria.where("_id").is(entity.getId())) );
-
-        Documents loadFile = new Documents();
-
-        if (gridFSFile != null && gridFSFile.getMetadata() != null) {
-            loadFile.setTitre( gridFSFile.getFilename() );
-
-            loadFile.setFileType( gridFSFile.getMetadata().get("_contentType").toString() );
-
-            loadFile.setFileSize( gridFSFile.getMetadata().get("fileSize").toString() );
-
-            loadFile.setFile( IOUtils.toByteArray(operations.getResource(gridFSFile).getInputStream()) );
-        }
-
+        Documents loadFile= documentsRepository.findDocumentById(id);
         return loadFile;
     }
 
@@ -77,7 +72,7 @@ public class DocumentsService {
     }
 
     @Transactional
-    public int deleteDocumentById(Long id) {
+    public int deleteDocumentById(String id) {
         int deleteByid= documentsRepository.deleteDocumentsById(id);
         return deleteByid;
     }

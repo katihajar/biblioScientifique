@@ -33,7 +33,7 @@ public class UnivesiteREST {
     }
 
     @DeleteMapping("/id/{id}")
-    public int deleteUniversiteById(@PathVariable Long id) {
+    public int deleteUniversiteById(@PathVariable String id) {
         return universiteService.deleteUniversiteById(id);
     }
 }

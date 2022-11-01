@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UniversiteRepository extends MongoRepository<Universite, Long> {
+public interface UniversiteRepository extends MongoRepository<Universite, String> {
     Universite findByLibelle(String libelle);
-    int deleteUniversiteById(long id);
+    int deleteUniversiteById(String id);
 }

@@ -23,7 +23,7 @@ public class ThematiqueREST {
     }
 
     @DeleteMapping("/id/{id}")
-    public int deleteThematiqueById(@PathVariable long id) {
+    public int deleteThematiqueById(@PathVariable String id) {
         return thematiqueService.deleteThematiqueById(id);
     }
 

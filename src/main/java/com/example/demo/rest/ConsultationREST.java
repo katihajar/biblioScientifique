@@ -21,7 +21,7 @@ public class ConsultationREST {
         return consultationService.findByUserUsername(username);
     }
     @GetMapping("/id/{id}")
-    public Consultation findConsultationById(@PathVariable Long id) {
+    public Consultation findConsultationById(@PathVariable String id) {
         return consultationService.findConsultationById(id);
     }
     @GetMapping("/")

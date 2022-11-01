@@ -30,6 +30,9 @@ public class User implements UserDetails {
     @JsonIgnore
     @NonNull
     private String password;
+    @JsonIgnore
+    @NonNull
+    private String phone;
 
 
 
@@ -69,4 +72,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

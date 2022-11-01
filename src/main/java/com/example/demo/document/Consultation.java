@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 public class Consultation {
     @Id
-    Long id;
+    String id;
     private double nbrConsultation;
     private double nbrTelechargement;
     @NonNull
@@ -17,11 +17,11 @@ public class Consultation {
     @NonNull
     private Documents documents;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

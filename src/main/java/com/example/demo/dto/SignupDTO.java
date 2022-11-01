@@ -20,4 +20,7 @@ public class SignupDTO {
     @NotBlank
     @Size(min = 6, max = 60)
     private String password;
+    @NotBlank
+    @Size(min = 6, max = 60)
+    private String phone;
 }

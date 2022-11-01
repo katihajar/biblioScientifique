@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 @Repository
-public interface ThematiqueRepository extends MongoRepository<Thematique, Long> {
+public interface ThematiqueRepository extends MongoRepository<Thematique, String> {
     Thematique findByDomaine(String domaine);
-    int deleteThematiqueById(long id);
+    int deleteThematiqueById(String id);
 }

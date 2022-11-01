@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ConsultationRepository extends MongoRepository<Consultation, Long> {
-    Consultation findConsultationById(Long id);
+public interface ConsultationRepository extends MongoRepository<Consultation, String> {
+    Consultation findConsultationById(String id);
     List<Consultation> findByDocumentsTitre(String titre);
     List<Consultation> findByUserUsername(String username);
 }

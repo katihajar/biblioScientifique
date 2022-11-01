@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DocumentsRepository extends MongoRepository<Documents, Long> {
+public interface DocumentsRepository extends MongoRepository<Documents, String> {
     Documents findByTitre(String titre);
     Documents findDocumentById(String id);
     int deleteDocumentsById(String id);

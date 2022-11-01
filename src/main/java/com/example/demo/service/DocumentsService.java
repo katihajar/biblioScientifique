@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.print.Doc;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,8 +51,9 @@ public class DocumentsService {
         documents.setTitre(upload.getOriginalFilename());
         documents.setFileSize(upload.getSize());
         documents.setFileType(upload.getContentType());
-
-
+        documents.setStatut(true);
+        documents.setDatePubl(new Date());
+        documents.setNmbrTelechargement(0);
         return documentsRepository.save(documents);
     }
 
@@ -75,5 +77,15 @@ public class DocumentsService {
     public int deleteDocumentById(String id) {
         int deleteByid= documentsRepository.deleteDocumentsById(id);
         return deleteByid;
+    }
+
+    public Documents changeStatus(String id,Boolean status) {
+        Documents doc = documentsRepository.findDocumentById(id);
+        doc.setStatut(status);
+        return documentsRepository.save(doc);
+    }
+
+    public Documents findDocumentById(String id) {
+        return documentsRepository.findDocumentById(id);
     }
 }

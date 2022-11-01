@@ -36,7 +36,7 @@ public class UniversiteService {
     }
 
     @Transactional
-    public int deleteUniversiteById(Long id) {
+    public int deleteUniversiteById(String id) {
         int deleteByid= universiteRepository.deleteUniversiteById(id);
         return deleteByid;
     }

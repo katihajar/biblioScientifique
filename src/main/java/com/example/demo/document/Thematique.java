@@ -7,17 +7,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 @Data
-public class Thematique{
+public class Thematique {
     @Id
-    Long id;
+    String id;
     @NonNull
     private String domaine;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -27,5 +27,8 @@ public class Thematique{
 
     public void setDomaine(String domaine) {
         this.domaine = domaine;
+    }
+
+    public Thematique() {
     }
 }

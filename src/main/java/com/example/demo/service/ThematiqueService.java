@@ -22,7 +22,7 @@ public class ThematiqueService {
         return thematiqueRepository.findAll();
     }
     @Transactional
-    public int deleteThematiqueById(long id) {
+    public int deleteThematiqueById(String id) {
         return thematiqueRepository.deleteThematiqueById(id);
     }
     @Transactional
@@ -35,6 +35,11 @@ public class ThematiqueService {
     }
 
     public Thematique save(Thematique entity) {
-        return thematiqueRepository.save(entity);
+        Thematique them = findByDomaine(entity.getDomaine());
+        if(them==null) {
+            return thematiqueRepository.save(entity);
+        }else{
+            return null;
+        }
     }
 }

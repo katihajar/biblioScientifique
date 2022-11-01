@@ -5,6 +5,7 @@ import com.mongodb.DBObject;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.InputStream;
@@ -20,6 +21,7 @@ public class Documents{
     private double nmbrTelechargement;
     private boolean statut;
     private Date datePubl;
+    @DBRef
     private Thematique thematique;
     private String fileType;
     private long fileSize;

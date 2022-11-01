@@ -61,9 +61,8 @@ public class AuthREST {
     @PostMapping("/signup")
     @Transactional
     public ResponseEntity<?> signup(@Valid @RequestBody SignupDTO dto) {
-        User user = new User(dto.getUsername(), dto.getEmail(), passwordEncoder.encode(dto.getPassword()), dto.getPhone());
+        User user = new User(dto.getUsername(), dto.getEmail(), passwordEncoder.encode(dto.getPassword()), dto.getPhone(),dto.getUniversite());
         userRepository.save(user);
-
         RefreshToken refreshToken = new RefreshToken();
         refreshToken.setOwner(user);
         refreshTokenRepository.save(refreshToken);

@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.document.Documents;
+import com.example.demo.document.Thematique;
 import com.example.demo.document.Universite;
 import com.example.demo.repository.DocumentsRepository;
 import com.example.demo.repository.UniversiteRepository;
@@ -24,7 +25,12 @@ public class UniversiteService {
     }
 
     public Universite save(Universite entity) {
-        return universiteRepository.save(entity);
+        Universite universite = findByLibelle(entity.getLibelle());
+        if(universite==null) {
+            return universiteRepository.save(entity);
+        }else{
+            return null;
+        }
     }
     @Transactional
     public int deleteListUniversiteById(List<Universite> universiteList) {

@@ -3,6 +3,7 @@ package com.example.demo.document;
 import lombok.Data;
 import lombok.NonNull;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -13,8 +14,10 @@ public class Consultation {
     private double nbrConsultation;
     private double nbrTelechargement;
     @NonNull
+    @DBRef
     private User user;
     @NonNull
+    @DBRef
     private Documents documents;
 
     public String getId() {

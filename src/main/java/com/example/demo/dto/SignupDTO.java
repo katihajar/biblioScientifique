@@ -1,7 +1,9 @@
 package com.example.demo.dto;
 
+import com.example.demo.document.Universite;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -23,4 +25,6 @@ public class SignupDTO {
     @NotBlank
     @Size(min = 6, max = 60)
     private String phone;
+    @DBRef
+    private Universite universite;
 }

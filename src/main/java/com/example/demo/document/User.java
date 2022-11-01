@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,15 +34,17 @@ public class User implements UserDetails {
     @JsonIgnore
     @NonNull
     private String phone;
-
-
+    @JsonIgnore
+    @NonNull
+    @DBRef
+    private Universite universite;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.EMPTY_LIST;
     }
 
-    private Universite universite;
+
 
     @Override
     public String getPassword() {

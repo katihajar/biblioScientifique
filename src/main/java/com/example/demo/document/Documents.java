@@ -23,6 +23,8 @@ public class Documents{
     private Date datePubl;
     @DBRef
     private Thematique thematique;
+    @DBRef
+    private User user;
     private String fileType;
     private long fileSize;
     private byte[] file;
@@ -51,7 +53,7 @@ public class Documents{
         this.nmbrTelechargement = nmbrTelechargement;
     }
 
-    public boolean isStatut() {
+    public boolean getStatut() {
         return statut;
     }
 
@@ -97,5 +99,13 @@ public class Documents{
 
     public void setFile(byte[] file) {
         this.file = file;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

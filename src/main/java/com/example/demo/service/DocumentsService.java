@@ -40,7 +40,7 @@ public class DocumentsService {
     }
 
 
-    public Documents addFile(MultipartFile upload) throws IOException {
+    public Documents addFile(MultipartFile upload,Documents doc) throws IOException {
 
         DBObject metadata = new BasicDBObject();
         metadata.put("fileSize", upload.getSize());
@@ -51,9 +51,11 @@ public class DocumentsService {
         documents.setTitre(upload.getOriginalFilename());
         documents.setFileSize(upload.getSize());
         documents.setFileType(upload.getContentType());
-        documents.setStatut(true);
+        documents.setStatut(doc.getStatut());
         documents.setDatePubl(new Date());
         documents.setNmbrTelechargement(0);
+        documents.setUser(doc.getUser());
+        documents.setThematique(doc.getThematique());
         return documentsRepository.save(documents);
     }
 

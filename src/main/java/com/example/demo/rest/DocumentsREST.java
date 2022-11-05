@@ -39,8 +39,8 @@ public class DocumentsREST {
         return documentsService.deleteDocumentById(id);
     }
     @PostMapping("/upload")
-    public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file) throws IOException {
-        return new ResponseEntity<>(documentsService.addFile(file), HttpStatus.OK);
+    public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file,@RequestBody Documents doc) throws IOException {
+        return new ResponseEntity<>(documentsService.addFile(file,doc), HttpStatus.OK);
     }
 
     @PostMapping("/getFile/{id}")

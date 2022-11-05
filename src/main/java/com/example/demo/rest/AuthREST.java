@@ -44,8 +44,11 @@ public class AuthREST {
     @PostMapping("/login")
     @Transactional
     public ResponseEntity<?> login(@Valid @RequestBody LoginDTO dto) {
+        System.out.println(dto.getUsername());
+        System.out.println(dto.getPassword());
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
         User user = (User) authentication.getPrincipal();
 
         RefreshToken refreshToken = new RefreshToken();

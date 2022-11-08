@@ -20,6 +20,7 @@ public class UnivesiteREST {
     }
     @GetMapping("/")
     public List<Universite> findAll() {
+        System.out.println("hna");
         return universiteService.findAll();
     }
     @PostMapping("/")

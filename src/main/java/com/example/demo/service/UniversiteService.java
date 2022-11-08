@@ -21,6 +21,8 @@ public class UniversiteService {
     }
 
     public List<Universite> findAll() {
+        List<Universite> e =universiteRepository.findAll();
+        System.out.println(e);
         return universiteRepository.findAll();
     }
 

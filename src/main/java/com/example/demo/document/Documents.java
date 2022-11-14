@@ -20,6 +20,7 @@ public class Documents{
     private String titre;
     private double nmbrTelechargement;
     private boolean statut;
+    private boolean visibilite;
     private Date datePubl;
     @DBRef
     private Thematique thematique;
@@ -28,6 +29,18 @@ public class Documents{
     private String fileType;
     private long fileSize;
     private byte[] file;
+
+    public boolean isStatut() {
+        return statut;
+    }
+
+    public boolean isVisibilite() {
+        return visibilite;
+    }
+
+    public void setVisibilite(boolean visibilite) {
+        this.visibilite = visibilite;
+    }
 
     public String getId() {
         return id;
@@ -51,10 +64,6 @@ public class Documents{
 
     public void setNmbrTelechargement(double nmbrTelechargement) {
         this.nmbrTelechargement = nmbrTelechargement;
-    }
-
-    public boolean getStatut() {
-        return statut;
     }
 
     public void setStatut(boolean statut) {

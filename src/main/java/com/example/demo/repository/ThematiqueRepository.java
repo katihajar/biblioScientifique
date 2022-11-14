@@ -8,5 +8,6 @@ import java.util.Optional;
 @Repository
 public interface ThematiqueRepository extends MongoRepository<Thematique, String> {
     Thematique findByDomaine(String domaine);
+    Thematique findThematiqueById(String id);
     int deleteThematiqueById(String id);
 }

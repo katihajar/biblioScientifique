@@ -13,6 +13,9 @@ public class ThematiqueService {
     @Autowired
     ThematiqueRepository thematiqueRepository;
 
+    public Thematique findThematiqueById(String id) {
+        return thematiqueRepository.findThematiqueById(id);
+    }
 
     public Thematique findByDomaine(String domaine) {
         return thematiqueRepository.findByDomaine(domaine);

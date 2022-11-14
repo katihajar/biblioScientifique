@@ -58,7 +58,7 @@ public class AuthREST {
         String accessToken = jwtHelper.generateAccessToken(user);
         String refreshTokenString = jwtHelper.generateRefreshToken(user, refreshToken);
 
-        return ResponseEntity.ok(new TokenDTO(user.getId(), accessToken, refreshTokenString));
+        return ResponseEntity.ok(new TokenDTO(user, accessToken, refreshTokenString));
     }
 
     @PostMapping("/signup")
@@ -73,7 +73,7 @@ public class AuthREST {
         String accessToken = jwtHelper.generateAccessToken(user);
         String refreshTokenString = jwtHelper.generateRefreshToken(user, refreshToken);
 
-        return ResponseEntity.ok(new TokenDTO(user.getId(), accessToken, refreshTokenString));
+        return ResponseEntity.ok(new TokenDTO(user, accessToken, refreshTokenString));
     }
 
     @PostMapping("logout")
@@ -110,7 +110,7 @@ public class AuthREST {
             User user = userService.findById(jwtHelper.getUserIdFromRefreshToken(refreshTokenString));
             String accessToken = jwtHelper.generateAccessToken(user);
 
-            return ResponseEntity.ok(new TokenDTO(user.getId(), accessToken, refreshTokenString));
+            return ResponseEntity.ok(new TokenDTO(user, accessToken, refreshTokenString));
         }
 
         throw new BadCredentialsException("invalid token");
@@ -133,7 +133,7 @@ public class AuthREST {
             String accessToken = jwtHelper.generateAccessToken(user);
             String newRefreshTokenString = jwtHelper.generateRefreshToken(user, refreshToken);
 
-            return ResponseEntity.ok(new TokenDTO(user.getId(), accessToken, newRefreshTokenString));
+            return ResponseEntity.ok(new TokenDTO(user, accessToken, newRefreshTokenString));
         }
 
         throw new BadCredentialsException("invalid token");

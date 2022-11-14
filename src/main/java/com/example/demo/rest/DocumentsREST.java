@@ -1,6 +1,8 @@
 package com.example.demo.rest;
 
 import com.example.demo.document.Documents;
+import com.example.demo.document.Thematique;
+import com.example.demo.document.User;
 import com.example.demo.service.DocumentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -38,15 +40,32 @@ public class DocumentsREST {
     public int deleteDocumentById(@PathVariable String id) {
         return documentsService.deleteDocumentById(id);
     }
-    @PostMapping("/upload")
-    public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file,@RequestParam("doc") Documents doc) throws IOException {
-       System.out.println(doc);
 
-        return new ResponseEntity<>(documentsService.addFile(file,doc), HttpStatus.OK);
+
+
+    @PostMapping("/upload")
+        public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file,@RequestParam("visi") Boolean vs,@RequestParam("user") String user,@RequestParam("them") String them) throws IOException {
+            Documents doc = documentsService.addFile(file,vs,user,them);
+            return new ResponseEntity(doc, HttpStatus.OK);
+        }
+    @PostMapping("/save")
+    public ResponseEntity<?> save(@RequestBody Documents entity) {
+        Documents doc1 = documentsService.save1(entity);
+        return new ResponseEntity(doc1, HttpStatus.OK);
     }
 
     @PostMapping("/getFile/{id}")
     public Documents getFile(@PathVariable String id) {
         return documentsService.getFile(id);
+    }
+
+    @PutMapping("/")
+    public Documents update(@RequestBody Documents doc) {
+        return documentsService.update(doc);
+    }
+
+    @GetMapping("/doc/id/{id}")
+    public List<Documents> findByUserId(@PathVariable String id) {
+        return documentsService.findByUserId(id);
     }
 }

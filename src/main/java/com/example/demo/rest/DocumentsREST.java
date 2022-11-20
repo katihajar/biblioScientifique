@@ -30,14 +30,18 @@ public class DocumentsREST {
     public List<Documents> findAll() {
         return documentsService.findAll();
     }
+    @GetMapping("/docs/")
+    public List<Documents> findByVisibiliteAndStatut() {
+        return documentsService.findByVisibiliteAndStatut(true, true);
+    }
 
     @PostMapping("/delete-multiple-by-id")
     public int deleteListDocumentById(@RequestBody List<Documents> documentsList) {
         return documentsService.deleteListDocumentById(documentsList);
     }
 
-    @DeleteMapping("/id/{id}")
-    public int deleteDocumentById(@PathVariable String id) {
+    @DeleteMapping("/id/")
+    public int deleteDocumentById(@RequestParam("id") String id) {
         return documentsService.deleteDocumentById(id);
     }
 
@@ -67,5 +71,10 @@ public class DocumentsREST {
     @GetMapping("/doc/id/{id}")
     public List<Documents> findByUserId(@PathVariable String id) {
         return documentsService.findByUserId(id);
+    }
+
+    @PutMapping("/visib/")
+    public Documents changeVisib(@RequestParam("id") String id,@RequestParam("vs") Boolean vs) {
+        return documentsService.changeVisib(id, vs);
     }
 }

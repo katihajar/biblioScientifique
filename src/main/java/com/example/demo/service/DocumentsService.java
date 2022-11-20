@@ -45,8 +45,11 @@ public class DocumentsService {
         return documentsRepository.findAll();
     }
 
+    public List<Documents> findByVisibiliteAndStatut(boolean vs, boolean statut) {
+        return documentsRepository.findByVisibiliteAndStatut(vs, statut);
+    }
 
-    public Documents addFile(MultipartFile upload,Boolean vs,String user,String them) throws IOException {
+    public Documents addFile(MultipartFile upload, Boolean vs, String user, String them) throws IOException {
         User us= userService.findUserById(user);
         Thematique th = thematiqueService.findThematiqueById(them);
         DBObject metadata = new BasicDBObject();
@@ -99,9 +102,9 @@ public class DocumentsService {
         return deleteByid;
     }
 
-    public Documents changeStatus(String id,Boolean status) {
+    public Documents changeVisib(String id,Boolean vs) {
         Documents doc = documentsRepository.findDocumentById(id);
-        doc.setStatut(status);
+        doc.setVisibilite(vs);
         return documentsRepository.save(doc);
     }
 

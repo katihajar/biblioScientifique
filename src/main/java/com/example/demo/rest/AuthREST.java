@@ -54,17 +54,18 @@ public class AuthREST {
         RefreshToken refreshToken = new RefreshToken();
         refreshToken.setOwner(user);
         refreshTokenRepository.save(refreshToken);
+        User user1 = userRepository.findUserById(user.getId());
+        System.out.println(user1);
 
         String accessToken = jwtHelper.generateAccessToken(user);
         String refreshTokenString = jwtHelper.generateRefreshToken(user, refreshToken);
-
-        return ResponseEntity.ok(new TokenDTO(user, accessToken, refreshTokenString));
+        return ResponseEntity.ok(new TokenDTO(user1, accessToken, refreshTokenString));
     }
 
     @PostMapping("/signup")
     @Transactional
     public ResponseEntity<?> signup(@Valid @RequestBody SignupDTO dto) {
-        User user = new User(dto.getUsername(), dto.getEmail(), passwordEncoder.encode(dto.getPassword()), dto.getPhone(),dto.getUniversite());
+        User user = new User(dto.getUsername(), dto.getEmail(), passwordEncoder.encode(dto.getPassword()), dto.getPhone(),dto.getUniversite(), dto.getRole());
         userRepository.save(user);
         RefreshToken refreshToken = new RefreshToken();
         refreshToken.setOwner(user);

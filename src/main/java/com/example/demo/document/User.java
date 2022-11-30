@@ -28,16 +28,16 @@ public class User implements UserDetails {
     @Indexed(unique = true)
     @NonNull
     private String email;
-    @JsonIgnore
     @NonNull
     private String password;
-    @JsonIgnore
     @NonNull
     private String phone;
-    @JsonIgnore
     @NonNull
     @DBRef
     private Universite universite;
+    @NonNull
+    @DBRef
+    private Role role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -54,6 +54,30 @@ public class User implements UserDetails {
     @Override
     public String getUsername() {
         return username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Universite getUniversite() {
+        return universite;
+    }
+
+    public void setUniversite(Universite universite) {
+        this.universite = universite;
     }
 
     @Override
@@ -76,4 +100,36 @@ public class User implements UserDetails {
         return true;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public User( @NonNull String username, @NonNull String email, @NonNull String password, @NonNull String phone, @NonNull Universite universite, @NonNull Role role) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.universite = universite;
+        this.role = role;
+    }
 }

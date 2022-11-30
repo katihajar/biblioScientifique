@@ -27,4 +27,5 @@ public class UserREST {
     public ResponseEntity<?> me(@AuthenticationPrincipal User user, @PathVariable String id) {
         return ResponseEntity.ok(userRepository.findById(id));
     }
+
 }

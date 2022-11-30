@@ -1,5 +1,6 @@
 package com.example.demo.dto;
 
+import com.example.demo.document.Role;
 import com.example.demo.document.Universite;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,4 +28,6 @@ public class SignupDTO {
     private String phone;
     @DBRef
     private Universite universite;
+    @DBRef
+    private Role role;
 }

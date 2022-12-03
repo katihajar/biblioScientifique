@@ -18,7 +18,7 @@ public class UnivesiteREST {
     public Universite findByLibelle(@PathVariable String libelle) {
         return universiteService.findByLibelle(libelle);
     }
-    @GetMapping("/")
+    @GetMapping("/all")
     public List<Universite> findAll() {
         System.out.println("hna");
         return universiteService.findAll();

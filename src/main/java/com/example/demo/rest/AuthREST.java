@@ -1,12 +1,14 @@
 package com.example.demo.rest;
 
 import com.example.demo.document.RefreshToken;
+import com.example.demo.document.Universite;
 import com.example.demo.document.User;
 import com.example.demo.dto.LoginDTO;
 import com.example.demo.dto.SignupDTO;
 import com.example.demo.dto.TokenDTO;
 import com.example.demo.jwt.JwtHelper;
 import com.example.demo.repository.RefreshTokenRepository;
+import com.example.demo.repository.UniversiteRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,8 @@ public class AuthREST {
     PasswordEncoder passwordEncoder;
     @Autowired
     UserService userService;
+    @Autowired
+    UniversiteRepository universiteRepository ;
 
     @PostMapping("/login")
     @Transactional
@@ -65,7 +69,8 @@ public class AuthREST {
     @PostMapping("/signup")
     @Transactional
     public ResponseEntity<?> signup(@Valid @RequestBody SignupDTO dto) {
-        User user = new User(dto.getUsername(), dto.getEmail(), passwordEncoder.encode(dto.getPassword()), dto.getPhone(),dto.getUniversite(), dto.getRole());
+        Universite universite = universiteRepository.findByLibelle(dto.getUniversite().getLibelle());
+        User user = new User(dto.getUsername(), dto.getEmail(), passwordEncoder.encode(dto.getPassword()), dto.getPhone(),universite, dto.getRole());
         userRepository.save(user);
         RefreshToken refreshToken = new RefreshToken();
         refreshToken.setOwner(user);

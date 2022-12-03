@@ -1,18 +1,20 @@
 package com.example.demo.document;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 @Data
+@NoArgsConstructor
 public class Universite {
     @Id
     String id;
-    @NonNull
+
     private String libelle;
-    @NonNull
+
     private String addresse;
 
     public String getId() {

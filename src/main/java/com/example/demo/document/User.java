@@ -26,16 +26,12 @@ public class User implements UserDetails {
     @NonNull
     private String username;
     @Indexed(unique = true)
-    @NonNull
     private String email;
     @NonNull
     private String password;
-    @NonNull
     private String phone;
-    @NonNull
     @DBRef
     private Universite universite;
-    @NonNull
     @DBRef
     private Role role;
 
@@ -124,7 +120,7 @@ public class User implements UserDetails {
         this.role = role;
     }
 
-    public User( @NonNull String username, @NonNull String email, @NonNull String password, @NonNull String phone, @NonNull Universite universite, @NonNull Role role) {
+    public User( @NonNull String username,  String email, @NonNull String password,  String phone,  Universite universite,  Role role) {
         this.username = username;
         this.email = email;
         this.password = password;

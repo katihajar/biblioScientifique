@@ -49,7 +49,7 @@ public class DocumentsService {
         return documentsRepository.findByVisibiliteAndStatut(vs, statut);
     }
 
-    public Documents addFile(MultipartFile upload, Boolean vs, String user, String them) throws IOException {
+    public Documents addFile(MultipartFile upload, Boolean vs, String user, String them,String type,Date dat) throws IOException {
         User us= userService.findUserById(user);
         Thematique th = thematiqueService.findThematiqueById(them);
         DBObject metadata = new BasicDBObject();
@@ -62,11 +62,18 @@ public class DocumentsService {
         documents.setStatut(false);
         documents.setDatePubl(new Date());
         documents.setNmbrTelechargement(0);
+        documents.setNmbrVue(0);
         documents.setVisibilite(vs);
         documents.setUser(us);
         documents.setThematique(th);
-
+        documents.setTypeDoc(type);
+        documents.setDateDoc(dat);
         return documentsRepository.save(documents);
+    }
+    public  Documents countView(String id){
+        Documents doc1= findDocumentById(id);
+        doc1.setNmbrVue(doc1.getNmbrVue()+1);
+        return documentsRepository.save(doc1);
     }
     public Documents update(Documents doc){
         Documents doc1= findDocumentById(doc.getId());
@@ -115,4 +122,27 @@ public class DocumentsService {
     public Documents findDocumentById(String id) {
         return documentsRepository.findDocumentById(id);
     }
+
+
+    public Documents editFile(MultipartFile upload,  String user, String them,String type,Date dat,String id) throws IOException {
+        Documents doc = findDocumentById(id);
+        User us= userService.findUserById(user);
+        Thematique th = thematiqueService.findThematiqueById(them);
+        DBObject metadata = new BasicDBObject();
+        metadata.put("fileSize", upload.getSize());
+        doc.setFile(upload.getBytes());
+        doc.setTitre(upload.getOriginalFilename());
+        doc.setFileSize(upload.getSize());
+        doc.setFileType(upload.getContentType());
+        doc.setStatut(false);
+        doc.setDatePubl(new Date());
+        doc.setNmbrTelechargement(0);
+        doc.setNmbrVue(0);
+        doc.setUser(us);
+        doc.setThematique(th);
+        doc.setTypeDoc(type);
+        doc.setDateDoc(dat);
+        return documentsRepository.save(doc);
+    }
+
 }

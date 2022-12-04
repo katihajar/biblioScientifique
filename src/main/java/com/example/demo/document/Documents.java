@@ -19,9 +19,12 @@ public class Documents{
     String id;
     private String titre;
     private double nmbrTelechargement;
+    private double nmbrVue;
     private boolean statut;
     private boolean visibilite;
     private Date datePubl;
+    private Date dateDoc;
+    private String typeDoc;
     @DBRef
     private Thematique thematique;
     @DBRef
@@ -116,5 +119,29 @@ public class Documents{
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public double getNmbrVue() {
+        return nmbrVue;
+    }
+
+    public void setNmbrVue(double nmbrVue) {
+        this.nmbrVue = nmbrVue;
+    }
+
+    public Date getDateDoc() {
+        return dateDoc;
+    }
+
+    public void setDateDoc(Date dateDoc) {
+        this.dateDoc = dateDoc;
+    }
+
+    public String getTypeDoc() {
+        return typeDoc;
+    }
+
+    public void setTypeDoc(String typeDoc) {
+        this.typeDoc = typeDoc;
     }
 }

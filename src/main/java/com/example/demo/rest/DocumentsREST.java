@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -48,8 +49,8 @@ public class DocumentsREST {
 
 
     @PostMapping("/upload")
-        public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file,@RequestParam("visi") Boolean vs,@RequestParam("user") String user,@RequestParam("them") String them) throws IOException {
-            Documents doc = documentsService.addFile(file,vs,user,them);
+        public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file,@RequestParam("visi") Boolean vs,@RequestParam("user") String user,@RequestParam("them") String them,@RequestParam("type") String type,@RequestParam("date") Date dat) throws IOException {
+            Documents doc = documentsService.addFile(file,vs,user,them,type,dat);
             return new ResponseEntity(doc, HttpStatus.OK);
         }
     @PostMapping("/save")
@@ -76,5 +77,16 @@ public class DocumentsREST {
     @PutMapping("/visib/")
     public Documents changeVisib(@RequestParam("id") String id,@RequestParam("vs") Boolean vs) {
         return documentsService.changeVisib(id, vs);
+    }
+
+    @PutMapping("/countViews/{id}")
+    public Documents countView(@PathVariable String id) {
+        return documentsService.countView(id);
+    }
+    @PutMapping("/edite")
+    public ResponseEntity<?> edit(@RequestParam("file") MultipartFile file,@RequestParam("user") String user,@RequestParam("them") String them,@RequestParam("type") String type,@RequestParam("date") Date dat,@RequestParam("id") String id) throws IOException {
+       System.out.println("ediiit");
+        Documents doc = documentsService.editFile(file,user,them,type,dat,id);
+        return new ResponseEntity(doc, HttpStatus.OK);
     }
 }

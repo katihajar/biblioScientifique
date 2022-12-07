@@ -49,7 +49,11 @@ public class DocumentsService {
         return documentsRepository.findByVisibiliteAndStatut(vs, statut);
     }
 
-    public Documents addFile(MultipartFile upload, Boolean vs, String user, String them,String type,Date dat) throws IOException {
+    public List<Documents> findByStatut(boolean statut) {
+        return documentsRepository.findByStatut(statut);
+    }
+
+    public Documents addFile(MultipartFile upload, Boolean vs, String user, String them, String type, Date dat) throws IOException {
         User us= userService.findUserById(user);
         Thematique th = thematiqueService.findThematiqueById(them);
         DBObject metadata = new BasicDBObject();

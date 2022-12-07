@@ -13,5 +13,6 @@ public interface DocumentsRepository extends MongoRepository<Documents, String> 
     Documents findDocumentById(String id);
     List<Documents> findByUser(User user);
     List<Documents> findByVisibiliteAndStatut(boolean vs,boolean statut);
+    List<Documents> findByStatut(boolean statut);
     int deleteDocumentsById(String id);
 }

@@ -35,6 +35,10 @@ public class DocumentsREST {
     public List<Documents> findByVisibiliteAndStatut() {
         return documentsService.findByVisibiliteAndStatut(true, true);
     }
+    @GetMapping("/documents/")
+    public List<Documents> findByStatut() {
+        return documentsService.findByStatut(true);
+    }
 
     @PostMapping("/delete-multiple-by-id")
     public int deleteListDocumentById(@RequestBody List<Documents> documentsList) {

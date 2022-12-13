@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/document")
 public class DocumentsREST {
@@ -45,8 +45,8 @@ public class DocumentsREST {
         return documentsService.deleteListDocumentById(documentsList);
     }
 
-    @DeleteMapping("/id/")
-    public int deleteDocumentById(@RequestParam("id") String id) {
+    @DeleteMapping("/id/{id}")
+    public int deleteDocumentById(@PathVariable String id) {
         return documentsService.deleteDocumentById(id);
     }
 

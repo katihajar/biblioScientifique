@@ -118,7 +118,11 @@ public class DocumentsService {
         doc.setVisibilite(vs);
         return documentsRepository.save(doc);
     }
-
+    public Documents changeStatus(String id,Boolean vs) {
+        Documents doc = documentsRepository.findDocumentById(id);
+        doc.setStatut(vs);
+        return documentsRepository.save(doc);
+    }
     public Documents save1(Documents entity) {
         return documentsRepository.save(entity);
     }

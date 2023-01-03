@@ -82,6 +82,10 @@ public class DocumentsREST {
     public Documents changeVisib(@RequestParam("id") String id,@RequestParam("vs") Boolean vs) {
         return documentsService.changeVisib(id, vs);
     }
+    @PutMapping("/status/")
+    public Documents changeStatus(@RequestBody String id) {
+        return documentsService.changeStatus(id,true);
+    }
 
     @PutMapping("/countViews/{id}")
     public Documents countView(@PathVariable String id) {

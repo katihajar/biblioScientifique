@@ -35,4 +35,8 @@ public class ThematiqueREST {
     public Thematique save(@RequestBody Thematique entity) {
         return thematiqueService.save(entity);
     }
+    @PutMapping("/")
+    public Thematique edite(@RequestBody Thematique thematique) {
+        return thematiqueService.edite(thematique);
+    }
 }

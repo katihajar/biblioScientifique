@@ -45,4 +45,15 @@ public class ThematiqueService {
             return null;
         }
     }
+
+    public Thematique edite(Thematique thematique){
+        Thematique them = findByDomaine(thematique.getDomaine());
+        if(them==null) {
+            Thematique th = findThematiqueById(thematique.getId());
+            th.setDomaine(thematique.getDomaine());
+            return thematiqueRepository.save(th);
+        }else{
+            return null;
+        }
+    }
 }
